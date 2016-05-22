@@ -9,9 +9,10 @@ import java.net.URL;
 public class HttpUtil {
 	public static void sendHttpRequest(final String address,final HttpCallbackListener listener){
 		new Thread(new Runnable(){
-
+			
 			@Override
 			public void run() {
+				//使用HttpURLConnection请求方式解析
 				HttpURLConnection connection = null;
 				try{
 					URL url = new URL(address);
@@ -19,7 +20,8 @@ public class HttpUtil {
 					connection.setRequestMethod("GET");
 					connection.setConnectTimeout(8000);
 					connection.setReadTimeout(8000);
-					InputStream in = connection.getInputStream();
+					InputStream in = connection.getInputStream();	//获取服务器返回的输入流
+					//下面对获取到的输入流进行读取
 					BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 					StringBuilder response = new StringBuilder();
 					String line;
@@ -37,7 +39,7 @@ public class HttpUtil {
 					}
 				}finally{
 					if(connection != null){
-						connection.disconnect();
+						connection.disconnect();	//将Http连接关闭
 					}
 				}
 			}

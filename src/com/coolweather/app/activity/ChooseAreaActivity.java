@@ -134,7 +134,7 @@ public class ChooseAreaActivity extends Activity {
 		if(!TextUtils.isEmpty(code)){
 			address = "http://www.weather.com.cn/data/list3/city"+code+".xml";
 		}else{
-			address = "http://www.weather.com.cn/data/list3.xml";
+			address = "http://www.weather.com.cn/data/list3/city.xml";
 		}
 		showProgressDialog();	//显示进度对话框
 		//向服务器发送请求
@@ -172,7 +172,6 @@ public class ChooseAreaActivity extends Activity {
 			public void onError(Exception e) {
 				//通过runUiThread方法回到主线程处理逻辑
 				runOnUiThread(new Runnable(){
-
 					@Override
 					public void run() {
 						closeProgressDialog();
